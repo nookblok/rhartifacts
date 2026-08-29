@@ -22,7 +22,6 @@
       overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
-
     .pixels {
       position: fixed;
       inset: 0;
@@ -41,7 +40,6 @@
       0% { background-position: 0 0, 0 0, 0 0, 0 0; }
       100% { background-position: 24px 24px, 24px 24px, 48px -48px, -16px 16px; }
     }
-
     header, section, footer { position: relative; z-index: 1; }
     header {
       position: sticky;
@@ -50,25 +48,12 @@
       background: rgba(12, 61, 40, 0.88);
       border-bottom: 1px solid var(--line);
     }
-    .wrap {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 20px 24px;
-    }
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-    }
-    .brand {
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      font-weight: 700;
-    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 20px 24px; }
+    .nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .brand { font-size: 13px; letter-spacing: 0.12em; font-weight: 700; }
     nav {
       display: flex;
-      gap: 20px;
+      gap: 18px;
       font-size: 14px;
       color: var(--muted);
       flex-wrap: wrap;
@@ -76,7 +61,7 @@
     }
     nav a:hover { color: var(--lime); }
     .hero, section { padding: 88px 24px; }
-    .hero, .opensea { text-align: center; }
+    .hero, .center { text-align: center; }
     .hero-logo {
       width: 72px;
       height: 72px;
@@ -87,8 +72,8 @@
       animation: logoPulse 2.8s ease-in-out infinite;
     }
     @keyframes logoPulse {
-      0%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
-      50% { transform: translateY(-6px) scale(1.06); filter: brightness(1.25); }
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-6px) scale(1.06); }
     }
     h1 {
       font-family: Georgia, "Times New Roman", serif;
@@ -103,26 +88,25 @@
       margin-bottom: 16px;
       text-align: center;
     }
-    .lead, .opensea p {
+    .lead {
       max-width: 640px;
       margin: 0 auto;
       color: var(--muted);
       font-size: 18px;
       line-height: 1.7;
     }
-    .stats {
-      margin-top: 28px;
-      color: var(--muted);
-      font-size: 14px;
-    }
+    .stats { margin-top: 28px; color: var(--muted); font-size: 14px; }
     .btn {
       display: inline-block;
-      margin-top: 28px;
+      margin-top: 20px;
       border: 1px solid var(--lime);
       color: var(--lime);
       border-radius: 999px;
       padding: 12px 22px;
       font-size: 14px;
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
     }
     .btn:hover { background: rgba(198, 240, 0, 0.1); }
     .grid {
@@ -138,33 +122,55 @@
       overflow: hidden;
       animation: cardFloat 4.5s ease-in-out infinite;
     }
-    .card:nth-child(2n) { animation-delay: 0.4s; }
-    .card:nth-child(3n) { animation-delay: 0.8s; }
-    .card:nth-child(4n) { animation-delay: 1.2s; }
+    .card:nth-child(2n) { animation-delay: .4s; }
+    .card:nth-child(3n) { animation-delay: .8s; }
     .card img {
       width: 100%;
       aspect-ratio: 1;
       display: block;
       image-rendering: pixelated;
-      animation: pixelFlicker 3.2s steps(2, end) infinite;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: var(--lime);
-    }
-    .card:hover img {
-      animation: none;
-      transform: scale(1.04);
     }
     @keyframes cardFloat {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-7px); }
     }
-    @keyframes pixelFlicker {
-      0%, 90%, 100% { filter: brightness(1); }
-      92% { filter: brightness(1.35); }
-      94% { filter: brightness(0.85); }
+    .wl-form {
+      max-width: 440px;
+      margin: 28px auto 0;
+      text-align: left;
     }
+    .wl-form label {
+      display: block;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .wl-form input[type="text"],
+    .wl-form input[type="url"],
+    .wl-form input[type="email"] {
+      width: 100%;
+      margin-top: 6px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--card);
+      color: var(--text);
+      font-size: 15px;
+    }
+    .wl-form input:focus { outline: none; border-color: var(--lime); }
+    .checks { margin: 8px 0 18px; }
+    .check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .check input { width: auto; margin-top: 3px; accent-color: var(--lime); }
+    .check a { color: var(--lime); text-decoration: underline; }
+    .wl-form .btn { width: 100%; }
+    .ok { display: none; margin-top: 18px; color: var(--lime); font-size: 15px; }
     footer {
       border-top: 1px solid var(--line);
       color: var(--muted);
@@ -184,8 +190,9 @@
       <nav>
         <a href="#about">About</a>
         <a href="#collection">Collection</a>
+        <a href="#whitelist">Whitelist</a>
         <a href="#opensea">OpenSea</a>
-        <a href="https://x.com/rhartifacts" target="_blank" rel="noopener">X</a>
+        <a href="https://x.com/RHArtifacts" target="_blank" rel="noopener">X</a>
       </nav>
     </div>
   </header>
@@ -194,7 +201,7 @@
     <img src="./art/logo.png" alt="RH Artifacts logo" class="hero-logo" />
     <h1>RH Artifacts</h1>
     <p class="lead">
-      A limited collection of 5,000 unique pixel artifacts on Robinhood Chain.
+      A limited collection of 5,000 unique pixel relics on Robinhood Chain.
       Each piece is a one-of-one colorway of a classic invader form —
       simple, collectible, and made to live on OpenSea.
     </p>
@@ -207,9 +214,59 @@
     <div class="grid" id="grid"></div>
   </section>
 
-  <section class="opensea" id="opensea">
+  <section class="center" id="whitelist">
+    <h2>Whitelist</h2>
+    <p class="lead">
+      Follow, retweet, like, comment, and quote the
+      <a href="https://x.com/RHArtifacts/status/2093733282802471291" target="_blank" rel="noopener" style="color:#c6f000">official post</a>
+      first. Wallet address is required.
+    </p>
+
+    <form class="wl-form" id="wl">
+      <label>Wallet address (required)
+        <input type="text" name="wallet" placeholder="0x..." required minlength="20" />
+      </label>
+      <label>X username (required)
+        <input type="text" name="twitter" placeholder="@username" required />
+      </label>
+      <label>Quote tweet link (required)
+        <input type="url" name="quote" placeholder="https://x.com/yourname/status/..." required />
+      </label>
+      <label>Email (optional)
+        <input type="email" name="email" placeholder="you@email.com" />
+      </label>
+
+      <div class="checks">
+        <label class="check">
+          <input type="checkbox" name="follow" required />
+          I <a href="https://x.com/intent/follow?screen_name=RHArtifacts" target="_blank" rel="noopener">followed @RHArtifacts</a>
+        </label>
+        <label class="check">
+          <input type="checkbox" name="rt" required />
+          I <a href="https://x.com/intent/retweet?tweet_id=2093733282802471291" target="_blank" rel="noopener">retweeted</a> the official post
+        </label>
+        <label class="check">
+          <input type="checkbox" name="like" required />
+          I <a href="https://x.com/intent/like?tweet_id=2093733282802471291" target="_blank" rel="noopener">liked</a> the official post
+        </label>
+        <label class="check">
+          <input type="checkbox" name="comment" required />
+          I <a href="https://x.com/intent/tweet?in_reply_to=2093733282802471291" target="_blank" rel="noopener">commented</a> on the official post
+        </label>
+        <label class="check">
+          <input type="checkbox" name="quote_ok" required />
+          I <a href="https://x.com/intent/tweet?url=https://x.com/RHArtifacts/status/2093733282802471291" target="_blank" rel="noopener">quoted</a> the official post
+        </label>
+      </div>
+
+      <button class="btn" type="submit">Apply Whitelist</button>
+      <p class="ok" id="ok">Application received.</p>
+    </form>
+  </section>
+
+  <section class="center" id="opensea">
     <h2>OpenSea</h2>
-    <p>
+    <p class="lead">
       RH Artifacts will launch on OpenSea on Robinhood Chain.
       The collection link will be added here when mint goes live.
     </p>
@@ -217,23 +274,46 @@
   </section>
 
   <footer>
-    RH Artifacts · Supply 5,000 · Robinhood Chain ·
-    <a href="https://x.com/rhartifacts" target="_blank" rel="noopener">@rhartifacts</a>
+    RH Artifacts · 5,000 · Robinhood Chain ·
+    <a href="https://x.com/RHArtifacts" target="_blank" rel="noopener">@RHArtifacts</a>
   </footer>
 
   <script>
-    const files = [
-      1, 10, 100, 101,
-      1000, 1001, 1002, 1003, 1004, 1005,
-      1006, 1007, 1008, 1009,
-      1010, 1011, 1012, 1013, 1014, 1015
-    ];
+    const files = [1,10,100,101,1000,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015];
     const grid = document.getElementById("grid");
     files.forEach((n) => {
-      grid.innerHTML += `
-        <article class="card">
-          <img src="./art/${n}.png" alt="RH Artifacts" />
-        </article>`;
+      grid.innerHTML += `<article class="card"><img src="./art/${n}.png" alt="RH Artifacts" /></article>`;
+    });
+
+    const form = document.getElementById("wl");
+    const ok = document.getElementById("ok");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form));
+      try {
+        await fetch("https://formsubmit.co/ajax/dinasanpo@gmail.com", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            _subject: "RH Artifacts whitelist",
+            wallet: data.wallet,
+            twitter: data.twitter,
+            quote: data.quote,
+            email: data.email || "-",
+            follow: "yes",
+            rt: "yes",
+            like: "yes",
+            comment: "yes",
+            quote_action: "yes"
+          })
+        });
+        form.reset();
+        ok.style.display = "block";
+        ok.textContent = "Application received.";
+      } catch (err) {
+        ok.style.display = "block";
+        ok.textContent = "Could not send. Try again.";
+      }
     });
   </script>
 </body>
