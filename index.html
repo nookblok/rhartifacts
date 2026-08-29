@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RH Artifacts</title>
+  <style>
+    :root {
+      --bg: #0c3d28;
+      --card: #0f4a31;
+      --text: #f4f7f2;
+      --muted: #c5d6cb;
+      --lime: #c6f000;
+      --line: rgba(198, 240, 0, 0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    a { color: inherit; text-decoration: none; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(12, 61, 40, 0.92);
+      border-bottom: 1px solid var(--line);
+    }
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 20px 24px;
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+    }
+    nav {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    nav a:hover { color: var(--lime); }
+    .hero, section { padding: 88px 24px; }
+    .hero, .opensea { text-align: center; }
+    .hero-logo {
+      width: 72px;
+      height: 72px;
+      image-rendering: pixelated;
+      display: block;
+      margin: 0 auto 18px;
+    }
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 8vw, 72px);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .lead, .opensea p {
+      max-width: 640px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.7;
+    }
+    .stats {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 28px;
+      border: 1px solid var(--lime);
+      color: var(--lime);
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-size: 14px;
+    }
+    .btn:hover { background: rgba(198, 240, 0, 0.1); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 16px;
+      margin-top: 36px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .card img {
+      width: 100%;
+      aspect-ratio: 1;
+      display: block;
+      image-rendering: pixelated;
+    }
+    .card span {
+      display: block;
+      padding: 10px 12px 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      padding: 28px 24px 40px;
+    }
+    @media (max-width: 640px) {
+      nav { gap: 16px; font-size: 13px; }
+      .hero, section { padding: 64px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#about">RH ARTIFACTS</a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#collection">Collection</a>
+        <a href="#opensea">OpenSea</a>
+      </nav>
+    </div>
+  </header>
 
+  <section class="hero" id="about">
+    <img src="art/logo.png" alt="RH Artifacts logo" class="hero-logo" />
+    <h1>RH Artifacts</h1>
+    <p class="lead">
+      A limited collection of 5,000 unique pixel relics on Robinhood Chain.
+      Each piece is a one-of-one colorway of a classic invader form —
+      simple, collectible, and made to live on OpenSea.
+    </p>
+    <div class="stats">5,000 supply · Robinhood Chain · OpenSea</div>
+  </section>
+
+  <section id="collection" class="wrap">
+    <h2>Collection</h2>
+    <p class="lead">Selected relics from the 5,000-piece set.</p>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="opensea" id="opensea">
+    <h2>OpenSea</h2>
+    <p>
+      RH Artifacts will launch on OpenSea on Robinhood Chain.
+      The collection link will be added here when mint goes live.
+    </p>
+    <a class="btn" href="#" target="_blank" rel="noopener">Coming Soon on OpenSea</a>
+  </section>
+
+  <footer>
+    RH Artifacts · 5,000 · Robinhood Chain · OpenSea
+  </footer>
+
+  <script>
+    const files = [
+      1, 10, 100, 101,
+      1000, 1001, 1002, 1003, 1004, 1005,
+      1006, 1007, 1008, 1009,
+      1010, 1011, 1012, 1013, 1014, 1015
+    ];
+    const grid = document.getElementById("grid");
+    files.forEach((n) => {
+      grid.innerHTML += `
+        <article class="card">
+          <img src="art/${n}.png" alt="RH Artifacts #${n}" />
+          <span>#${n}</span>
+        </article>`;
+    });
+  </script>
+</body>
+</html>
