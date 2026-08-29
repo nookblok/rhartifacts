@@ -19,48 +19,34 @@
       font-family: Inter, ui-sans-serif, system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
-      overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
-    .pixels {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background-color: #0c3d28;
-      background-image:
-        linear-gradient(rgba(198, 240, 0, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(198, 240, 0, 0.05) 1px, transparent 1px),
-        radial-gradient(circle, rgba(198, 240, 0, 0.18) 2px, transparent 3px),
-        radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 2px);
-      background-size: 24px 24px, 24px 24px, 48px 48px, 16px 16px;
-      animation: pixelShift 18s linear infinite;
-    }
-    @keyframes pixelShift {
-      0% { background-position: 0 0, 0 0, 0 0, 0 0; }
-      100% { background-position: 24px 24px, 24px 24px, 48px -48px, -16px 16px; }
-    }
-    header, section, footer { position: relative; z-index: 1; }
     header {
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(12, 61, 40, 0.88);
+      background: rgba(12, 61, 40, 0.92);
       border-bottom: 1px solid var(--line);
     }
-    .wrap { max-width: 1080px; margin: 0 auto; padding: 20px 24px; }
-    .nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .bar, .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
     .brand { font-size: 13px; letter-spacing: 0.12em; font-weight: 700; }
     nav {
       display: flex;
-      gap: 18px;
-      font-size: 14px;
-      color: var(--muted);
+      gap: 16px;
       flex-wrap: wrap;
-      justify-content: flex-end;
+      color: var(--muted);
+      font-size: 14px;
     }
     nav a:hover { color: var(--lime); }
-    .hero, section { padding: 88px 24px; }
+    .hero, section { padding: 72px 20px; }
     .hero, .center { text-align: center; }
     .hero-logo {
       width: 72px;
@@ -68,124 +54,132 @@
       object-fit: contain;
       image-rendering: pixelated;
       display: block;
-      margin: 0 auto 18px;
-      animation: logoPulse 2.8s ease-in-out infinite;
-    }
-    @keyframes logoPulse {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-6px) scale(1.06); }
+      margin: 0 auto 16px;
     }
     h1 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(42px, 8vw, 72px);
+      font-size: clamp(36px, 8vw, 64px);
       font-weight: 500;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
     h2 {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 36px;
+      font-size: 32px;
       font-weight: 500;
-      margin-bottom: 16px;
       text-align: center;
+      margin-bottom: 12px;
     }
     .lead {
       max-width: 640px;
-      margin: 0 auto;
+      margin: 0 auto 20px;
       color: var(--muted);
-      font-size: 18px;
       line-height: 1.7;
     }
-    .stats { margin-top: 28px; color: var(--muted); font-size: 14px; }
     .btn {
       display: inline-block;
-      margin-top: 20px;
       border: 1px solid var(--lime);
       color: var(--lime);
       border-radius: 999px;
       padding: 12px 22px;
       font-size: 14px;
-      background: transparent;
+    }
+    .btn.solid {
+      background: var(--lime);
+      color: #0c3d28;
+      font-weight: 700;
+      border-radius: 12px;
+      width: 100%;
       cursor: pointer;
       font-family: inherit;
     }
-    .btn:hover { background: rgba(198, 240, 0, 0.1); }
     .grid {
+      max-width: 1080px;
+      margin: 24px auto 0;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      gap: 16px;
-      margin-top: 36px;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 14px;
     }
     .card {
-      background: var(--card);
       border: 1px solid var(--line);
       border-radius: 16px;
       overflow: hidden;
-      animation: cardFloat 4.5s ease-in-out infinite;
+      background: var(--card);
     }
-    .card:nth-child(2n) { animation-delay: .4s; }
-    .card:nth-child(3n) { animation-delay: .8s; }
     .card img {
       width: 100%;
       aspect-ratio: 1;
       display: block;
       image-rendering: pixelated;
     }
-    @keyframes cardFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-7px); }
-    }
-    .wl-form {
-      max-width: 440px;
-      margin: 28px auto 0;
-      text-align: left;
-    }
-    .wl-form label {
+    #whitelist { max-width: 640px; margin: 0 auto; }
+    .pips { display: flex; gap: 8px; margin-bottom: 18px; }
+    .pip { flex: 1; height: 4px; background: rgba(198,240,0,.15); border-radius: 99px; }
+    .pip.on { background: var(--lime); }
+    .room { color: var(--lime); font-size: 12px; letter-spacing: .12em; margin-bottom: 8px; }
+    .panel { display: none; text-align: left; }
+    .panel.show { display: block; }
+    label {
       display: block;
-      margin-bottom: 14px;
-      font-size: 13px;
+      margin-bottom: 16px;
+      font-size: 12px;
+      letter-spacing: .08em;
       color: var(--muted);
     }
-    .wl-form input[type="text"],
-    .wl-form input[type="url"],
-    .wl-form input[type="email"] {
+    input[type="text"], input[type="url"] {
       width: 100%;
-      margin-top: 6px;
-      padding: 12px 14px;
+      margin-top: 8px;
+      padding: 14px;
       border: 1px solid var(--line);
       border-radius: 12px;
       background: var(--card);
       color: var(--text);
-      font-size: 15px;
+      font-size: 16px;
     }
-    .wl-form input:focus { outline: none; border-color: var(--lime); }
-    .checks { margin: 8px 0 18px; }
-    .check {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 10px;
-      font-size: 14px;
+    .task {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .num { font-size: 11px; color: var(--lime); letter-spacing: .12em; margin-bottom: 6px; }
+    .task h3 { margin-bottom: 6px; }
+    .task p { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
+    .go {
+      display: block;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 13px;
+    }
+    .go:hover { border-color: var(--lime); color: var(--lime); }
+    .check { display: flex; gap: 10px; margin-top: 10px; font-size: 14px; color: var(--muted); }
+    .row { display: flex; gap: 10px; margin-top: 18px; }
+    .ghost {
+      flex: 1;
+      background: transparent;
       color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      cursor: pointer;
     }
-    .check input { width: auto; margin-top: 3px; accent-color: var(--lime); }
-    .check a { color: var(--lime); text-decoration: underline; }
-    .wl-form .btn { width: 100%; }
-    .ok { display: none; margin-top: 18px; color: var(--lime); font-size: 15px; }
+    .err { color: #ff8a8a; font-size: 13px; margin-top: 8px; display: none; }
+    .ok { display: none; margin-top: 16px; color: var(--lime); text-align: center; }
     footer {
-      border-top: 1px solid var(--line);
+      text-align: center;
       color: var(--muted);
       font-size: 13px;
-      text-align: center;
-      padding: 28px 24px 40px;
+      padding: 28px 20px 40px;
+      border-top: 1px solid var(--line);
     }
     footer a { color: var(--lime); }
   </style>
 </head>
 <body>
-  <div class="pixels"></div>
-
   <header>
-    <div class="wrap nav">
+    <div class="bar">
       <a class="brand" href="#about">RH ARTIFACTS</a>
       <nav>
         <a href="#about">About</a>
@@ -198,83 +192,92 @@
   </header>
 
   <section class="hero" id="about">
-    <img src="./art/logo.png" alt="RH Artifacts logo" class="hero-logo" />
+    <img class="hero-logo" src="./art/logo.png" alt="RH Artifacts logo" />
     <h1>RH Artifacts</h1>
     <p class="lead">
       A limited collection of 5,000 unique pixel relics on Robinhood Chain.
-      Each piece is a one-of-one colorway of a classic invader form —
-      simple, collectible, and made to live on OpenSea.
+      Each piece is a one-of-one colorway of a classic invader form.
     </p>
-    <div class="stats">5,000 supply · Robinhood Chain · OpenSea</div>
+    <a class="btn" href="#whitelist">Apply Whitelist</a>
   </section>
 
-  <section id="collection" class="wrap">
+  <section id="collection">
     <h2>Collection</h2>
     <p class="lead">Selected Artifacts from the 5,000-piece set.</p>
     <div class="grid" id="grid"></div>
   </section>
 
-  <section class="center" id="whitelist">
+  <section id="whitelist">
     <h2>Whitelist</h2>
-    <p class="lead">
-      Follow, retweet, like, comment, and quote the
-      <a href="https://x.com/RHArtifacts/status/2093733282802471291" target="_blank" rel="noopener" style="color:#c6f000">official post</a>
-      first. Wallet address is required.
-    </p>
+    <div class="pips"><div class="pip on" id="p1"></div><div class="pip" id="p2"></div></div>
 
-    <form class="wl-form" id="wl">
-      <label>Wallet address (required)
-        <input type="text" name="wallet" placeholder="0x..." required minlength="20" />
-      </label>
-      <label>X username (required)
-        <input type="text" name="twitter" placeholder="@username" required />
-      </label>
-      <label>Quote tweet link (required)
-        <input type="url" name="quote" placeholder="https://x.com/yourname/status/..." required />
-      </label>
-      <label>Email (optional)
-        <input type="email" name="email" placeholder="you@email.com" />
-      </label>
+    <div class="panel show" id="step1">
+      <div class="room">STEP 01 // IDENTITY</div>
+      <p class="lead" style="margin:0 0 20px;text-align:left">Enter your X username and wallet.</p>
+      <label>01 X USERNAME<input id="twitter" type="text" placeholder="@username" /></label>
+      <label>02 WALLET ADDRESS<input id="wallet" type="text" placeholder="0x..." /></label>
+      <p class="err" id="err1">Enter a valid X username and wallet address.</p>
+      <button class="btn solid" type="button" id="next">Continue →</button>
+    </div>
 
-      <div class="checks">
-        <label class="check">
-          <input type="checkbox" name="follow" required />
-          I <a href="https://x.com/intent/follow?screen_name=RHArtifacts" target="_blank" rel="noopener">followed @RHArtifacts</a>
-        </label>
-        <label class="check">
-          <input type="checkbox" name="rt" required />
-          I <a href="https://x.com/intent/retweet?tweet_id=2093733282802471291" target="_blank" rel="noopener">retweeted</a> the official post
-        </label>
-        <label class="check">
-          <input type="checkbox" name="like" required />
-          I <a href="https://x.com/intent/like?tweet_id=2093733282802471291" target="_blank" rel="noopener">liked</a> the official post
-        </label>
-        <label class="check">
-          <input type="checkbox" name="comment" required />
-          I <a href="https://x.com/intent/tweet?in_reply_to=2093733282802471291" target="_blank" rel="noopener">commented</a> on the official post
-        </label>
-        <label class="check">
-          <input type="checkbox" name="quote_ok" required />
-          I <a href="https://x.com/intent/tweet?url=https://x.com/RHArtifacts/status/2093733282802471291" target="_blank" rel="noopener">quoted</a> the official post
-        </label>
+    <div class="panel" id="step2">
+      <div class="room">STEP 02 // ASSIGNMENT</div>
+      <p class="lead" style="margin:0 0 20px;text-align:left">Complete every task, then submit.</p>
+
+      <article class="task">
+        <div class="num">01 FOLLOW</div>
+        <h3>Follow @RHArtifacts</h3>
+        <p>Follow the official account.</p>
+        <a class="go" href="https://x.com/intent/follow?screen_name=RHArtifacts" target="_blank" rel="noopener">GO TO X →</a>
+        <label class="check"><input type="checkbox" id="c1" /> I followed @RHArtifacts</label>
+      </article>
+      <article class="task">
+        <div class="num">02 LIKE</div>
+        <h3>Like the official post</h3>
+        <p>Like the announcement post.</p>
+        <a class="go" href="https://x.com/intent/like?tweet_id=2093733282802471291" target="_blank" rel="noopener">GO TO X →</a>
+        <label class="check"><input type="checkbox" id="c2" /> I liked the post</label>
+      </article>
+      <article class="task">
+        <div class="num">03 RETWEET</div>
+        <h3>Retweet the official post</h3>
+        <p>Repost the announcement.</p>
+        <a class="go" href="https://x.com/intent/retweet?tweet_id=2093733282802471291" target="_blank" rel="noopener">GO TO X →</a>
+        <label class="check"><input type="checkbox" id="c3" /> I retweeted the post</label>
+      </article>
+      <article class="task">
+        <div class="num">04 COMMENT</div>
+        <h3>Comment on the post</h3>
+        <p>Leave a reply.</p>
+        <a class="go" href="https://x.com/intent/tweet?in_reply_to=2093733282802471291" target="_blank" rel="noopener">GO TO X →</a>
+        <label class="check"><input type="checkbox" id="c4" /> I commented on the post</label>
+      </article>
+      <article class="task">
+        <div class="num">05 QUOTE</div>
+        <h3>Quote the official post</h3>
+        <p>Quote the post and paste your link.</p>
+        <a class="go" href="https://x.com/intent/tweet?url=https://x.com/RHArtifacts/status/2093733282802471291" target="_blank" rel="noopener">GO TO X →</a>
+        <label>QUOTE TWEET LINK<input id="quote" type="url" placeholder="https://x.com/yourname/status/..." /></label>
+        <label class="check"><input type="checkbox" id="c5" /> I quoted the post</label>
+      </article>
+
+      <p class="err" id="err2">Finish every task and paste your quote link.</p>
+      <div class="row">
+        <button class="ghost" type="button" id="back">← Back</button>
+        <button class="btn solid" type="button" id="send" style="flex:1">Submit assignment →</button>
       </div>
-
-      <button class="btn" type="submit">Apply Whitelist</button>
       <p class="ok" id="ok">Application received.</p>
-    </form>
+    </div>
   </section>
 
   <section class="center" id="opensea">
     <h2>OpenSea</h2>
-    <p class="lead">
-      RH Artifacts will launch on OpenSea on Robinhood Chain.
-      The collection link will be added here when mint goes live.
-    </p>
-    <a class="btn" href="#" target="_blank" rel="noopener">Coming Soon on OpenSea</a>
+    <p class="lead">Launching on OpenSea, Robinhood Chain.</p>
+    <a class="btn" href="#">Coming Soon on OpenSea</a>
   </section>
 
   <footer>
-    RH Artifacts · 5,000 · Robinhood Chain ·
+    RH Artifacts · 5,000 ·
     <a href="https://x.com/RHArtifacts" target="_blank" rel="noopener">@RHArtifacts</a>
   </footer>
 
@@ -285,36 +288,52 @@
       grid.innerHTML += `<article class="card"><img src="./art/${n}.png" alt="RH Artifacts" /></article>`;
     });
 
-    const form = document.getElementById("wl");
-    const ok = document.getElementById("ok");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(form));
+    const step1 = document.getElementById("step1");
+    const step2 = document.getElementById("step2");
+    const p2 = document.getElementById("p2");
+    document.getElementById("next").onclick = () => {
+      const t = document.getElementById("twitter").value.trim();
+      const w = document.getElementById("wallet").value.trim();
+      if (t.length < 2 || w.length < 20) {
+        document.getElementById("err1").style.display = "block";
+        return;
+      }
+      document.getElementById("err1").style.display = "none";
+      step1.classList.remove("show");
+      step2.classList.add("show");
+      p2.classList.add("on");
+    };
+    document.getElementById("back").onclick = () => {
+      step2.classList.remove("show");
+      step1.classList.add("show");
+      p2.classList.remove("on");
+    };
+    document.getElementById("send").onclick = async () => {
+      const twitter = document.getElementById("twitter").value.trim();
+      const wallet = document.getElementById("wallet").value.trim();
+      const quote = document.getElementById("quote").value.trim();
+      const done = ["c1","c2","c3","c4","c5"].every((id) => document.getElementById(id).checked);
+      if (!done || !quote.startsWith("http")) {
+        document.getElementById("err2").style.display = "block";
+        return;
+      }
+      document.getElementById("err2").style.display = "none";
       try {
         await fetch("https://formsubmit.co/ajax/dinasanpo@gmail.com", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({
             _subject: "RH Artifacts whitelist",
-            wallet: data.wallet,
-            twitter: data.twitter,
-            quote: data.quote,
-            email: data.email || "-",
-            follow: "yes",
-            rt: "yes",
-            like: "yes",
-            comment: "yes",
-            quote_action: "yes"
+            wallet, twitter, quote,
+            follow: "yes", like: "yes", rt: "yes", comment: "yes", quote_action: "yes"
           })
         });
-        form.reset();
-        ok.style.display = "block";
-        ok.textContent = "Application received.";
-      } catch (err) {
-        ok.style.display = "block";
-        ok.textContent = "Could not send. Try again.";
+        document.getElementById("ok").style.display = "block";
+      } catch (e) {
+        document.getElementById("err2").style.display = "block";
+        document.getElementById("err2").textContent = "Could not send. Try again.";
       }
-    });
+    };
   </script>
 </body>
 </html>
