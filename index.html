@@ -37,6 +37,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
     }
     .brand {
       font-size: 13px;
@@ -45,9 +46,11 @@
     }
     nav {
       display: flex;
-      gap: 28px;
+      gap: 20px;
       font-size: 14px;
       color: var(--muted);
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
     nav a:hover { color: var(--lime); }
     .hero, section { padding: 88px 24px; }
@@ -55,6 +58,7 @@
     .hero-logo {
       width: 72px;
       height: 72px;
+      object-fit: contain;
       image-rendering: pixelated;
       display: block;
       margin: 0 auto 18px;
@@ -125,10 +129,7 @@
       text-align: center;
       padding: 28px 24px 40px;
     }
-    @media (max-width: 640px) {
-      nav { gap: 16px; font-size: 13px; }
-      .hero, section { padding: 64px 20px; }
-    }
+    footer a { color: var(--lime); }
   </style>
 </head>
 <body>
@@ -139,12 +140,13 @@
         <a href="#about">About</a>
         <a href="#collection">Collection</a>
         <a href="#opensea">OpenSea</a>
+        <a href="https://x.com/rhartifacts" target="_blank" rel="noopener">X</a>
       </nav>
     </div>
   </header>
 
   <section class="hero" id="about">
-    <img src="art/logo.png" alt="RH Artifacts logo" class="hero-logo" />
+    <img src="./art/logo.png" alt="RH Artifacts logo" class="hero-logo" />
     <h1>RH Artifacts</h1>
     <p class="lead">
       A limited collection of 5,000 unique pixel relics on Robinhood Chain.
@@ -170,7 +172,8 @@
   </section>
 
   <footer>
-    RH Artifacts · 5,000 · Robinhood Chain · OpenSea
+    RH Artifacts · 5,000 · Robinhood Chain ·
+    <a href="https://x.com/rhartifacts" target="_blank" rel="noopener">@rhartifacts</a>
   </footer>
 
   <script>
@@ -184,7 +187,7 @@
     files.forEach((n) => {
       grid.innerHTML += `
         <article class="card">
-          <img src="art/${n}.png" alt="RH Artifacts #${n}" />
+          <img src="./art/${n}.png" alt="RH Artifacts #${n}" />
           <span>#${n}</span>
         </article>`;
     });
