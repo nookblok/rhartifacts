@@ -83,15 +83,6 @@
       padding: 12px 22px;
       font-size: 14px;
     }
-    .btn.solid {
-      background: var(--lime);
-      color: #0c3d28;
-      font-weight: 700;
-      border-radius: 12px;
-      width: 100%;
-      cursor: pointer;
-      font-family: inherit;
-    }
     .grid {
       max-width: 1080px;
       margin: 24px auto 0;
@@ -111,62 +102,6 @@
       display: block;
       image-rendering: pixelated;
     }
-    #whitelist { max-width: 640px; margin: 0 auto; }
-    .pips { display: flex; gap: 8px; margin-bottom: 18px; }
-    .pip { flex: 1; height: 4px; background: rgba(198,240,0,.15); border-radius: 99px; }
-    .pip.on { background: var(--lime); }
-    .room { color: var(--lime); font-size: 12px; letter-spacing: .12em; margin-bottom: 8px; }
-    .panel { display: none; text-align: left; }
-    .panel.show { display: block; }
-    label {
-      display: block;
-      margin-bottom: 16px;
-      font-size: 12px;
-      letter-spacing: .08em;
-      color: var(--muted);
-    }
-    input[type="text"], input[type="url"] {
-      width: 100%;
-      margin-top: 8px;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--card);
-      color: var(--text);
-      font-size: 16px;
-    }
-    .task {
-      border: 1px solid var(--line);
-      background: var(--card);
-      border-radius: 14px;
-      padding: 16px;
-      margin-bottom: 12px;
-    }
-    .num { font-size: 11px; color: var(--lime); letter-spacing: .12em; margin-bottom: 6px; }
-    .task h3 { margin-bottom: 6px; }
-    .task p { color: var(--muted); font-size: 14px; margin-bottom: 12px; }
-    .go {
-      display: block;
-      text-align: center;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 12px;
-      font-size: 13px;
-    }
-    .go:hover { border-color: var(--lime); color: var(--lime); }
-    .check { display: flex; gap: 10px; margin-top: 10px; font-size: 14px; color: var(--muted); }
-    .row { display: flex; gap: 10px; margin-top: 18px; }
-    .ghost {
-      flex: 1;
-      background: transparent;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 14px;
-      cursor: pointer;
-    }
-    .err { color: #ff8a8a; font-size: 13px; margin-top: 8px; display: none; }
-    .ok { display: none; margin-top: 16px; color: var(--lime); text-align: center; }
     footer {
       text-align: center;
       color: var(--muted);
@@ -184,7 +119,6 @@
       <nav>
         <a href="#about">About</a>
         <a href="#collection">Collection</a>
-        <a href="#whitelist">Whitelist</a>
         <a href="#opensea">OpenSea</a>
         <a href="https://x.com/RHArtifacts" target="_blank" rel="noopener">X</a>
       </nav>
@@ -198,76 +132,12 @@
       A limited collection of 5,000 unique pixel relics on Robinhood Chain.
       Each piece is a one-of-one colorway of a classic invader form.
     </p>
-    <a class="btn" href="#whitelist">Apply Whitelist</a>
   </section>
 
   <section id="collection">
     <h2>Collection</h2>
     <p class="lead">Selected Artifacts from the 5,000-piece set.</p>
     <div class="grid" id="grid"></div>
-  </section>
-
-  <section id="whitelist">
-    <h2>Whitelist</h2>
-    <div class="pips"><div class="pip on" id="p1"></div><div class="pip" id="p2"></div></div>
-
-    <div class="panel show" id="step1">
-      <div class="room">STEP 01 // IDENTITY</div>
-      <p class="lead" style="margin:0 0 20px;text-align:left">Enter your X username and wallet.</p>
-      <label>01 X USERNAME<input id="twitter" type="text" placeholder="@username" /></label>
-      <label>02 WALLET ADDRESS<input id="wallet" type="text" placeholder="0x..." /></label>
-      <p class="err" id="err1">Enter a valid X username and wallet address.</p>
-      <button class="btn solid" type="button" id="next">Continue →</button>
-    </div>
-
-    <div class="panel" id="step2">
-      <div class="room">STEP 02 // ASSIGNMENT</div>
-      <p class="lead" style="margin:0 0 20px;text-align:left">Complete every task, then submit.</p>
-
-      <article class="task">
-        <div class="num">01 FOLLOW</div>
-        <h3>Follow @RHArtifacts</h3>
-        <p>Follow the official account.</p>
-        <a class="go" href="https://x.com/intent/follow?screen_name=RHArtifacts" target="_blank" rel="noopener">GO TO X →</a>
-        <label class="check"><input type="checkbox" id="c1" /> I followed @RHArtifacts</label>
-      </article>
-      <article class="task">
-        <div class="num">02 LIKE</div>
-        <h3>Like the official post</h3>
-        <p>Like the announcement post.</p>
-        <a class="go" href="https://x.com/intent/like?tweet_id=2093733282802471291" target="_blank" rel="noopener">GO TO X →</a>
-        <label class="check"><input type="checkbox" id="c2" /> I liked the post</label>
-      </article>
-      <article class="task">
-        <div class="num">03 RETWEET</div>
-        <h3>Retweet the official post</h3>
-        <p>Repost the announcement.</p>
-        <a class="go" href="https://x.com/intent/retweet?tweet_id=2093733282802471291" target="_blank" rel="noopener">GO TO X →</a>
-        <label class="check"><input type="checkbox" id="c3" /> I retweeted the post</label>
-      </article>
-      <article class="task">
-        <div class="num">04 COMMENT</div>
-        <h3>Comment on the post</h3>
-        <p>Leave a reply.</p>
-        <a class="go" href="https://x.com/intent/tweet?in_reply_to=2093733282802471291" target="_blank" rel="noopener">GO TO X →</a>
-        <label class="check"><input type="checkbox" id="c4" /> I commented on the post</label>
-      </article>
-      <article class="task">
-        <div class="num">05 QUOTE</div>
-        <h3>Quote the official post</h3>
-        <p>Quote the post and paste your link.</p>
-        <a class="go" href="https://x.com/intent/tweet?url=https://x.com/RHArtifacts/status/2093733282802471291" target="_blank" rel="noopener">GO TO X →</a>
-        <label>QUOTE TWEET LINK<input id="quote" type="url" placeholder="https://x.com/yourname/status/..." /></label>
-        <label class="check"><input type="checkbox" id="c5" /> I quoted the post</label>
-      </article>
-
-      <p class="err" id="err2">Finish every task and paste your quote link.</p>
-      <div class="row">
-        <button class="ghost" type="button" id="back">← Back</button>
-        <button class="btn solid" type="button" id="send" style="flex:1">Submit assignment →</button>
-      </div>
-      <p class="ok" id="ok">Application received.</p>
-    </div>
   </section>
 
   <section class="center" id="opensea">
@@ -287,53 +157,6 @@
     files.forEach((n) => {
       grid.innerHTML += `<article class="card"><img src="./art/${n}.png" alt="RH Artifacts" /></article>`;
     });
-
-    const step1 = document.getElementById("step1");
-    const step2 = document.getElementById("step2");
-    const p2 = document.getElementById("p2");
-    document.getElementById("next").onclick = () => {
-      const t = document.getElementById("twitter").value.trim();
-      const w = document.getElementById("wallet").value.trim();
-      if (t.length < 2 || w.length < 20) {
-        document.getElementById("err1").style.display = "block";
-        return;
-      }
-      document.getElementById("err1").style.display = "none";
-      step1.classList.remove("show");
-      step2.classList.add("show");
-      p2.classList.add("on");
-    };
-    document.getElementById("back").onclick = () => {
-      step2.classList.remove("show");
-      step1.classList.add("show");
-      p2.classList.remove("on");
-    };
-    document.getElementById("send").onclick = async () => {
-      const twitter = document.getElementById("twitter").value.trim();
-      const wallet = document.getElementById("wallet").value.trim();
-      const quote = document.getElementById("quote").value.trim();
-      const done = ["c1","c2","c3","c4","c5"].every((id) => document.getElementById(id).checked);
-      if (!done || !quote.startsWith("http")) {
-        document.getElementById("err2").style.display = "block";
-        return;
-      }
-      document.getElementById("err2").style.display = "none";
-      try {
-        await fetch("https://formsubmit.co/ajax/dinasanpo@gmail.com", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({
-            _subject: "RH Artifacts whitelist",
-            wallet, twitter, quote,
-            follow: "yes", like: "yes", rt: "yes", comment: "yes", quote_action: "yes"
-          })
-        });
-        document.getElementById("ok").style.display = "block";
-      } catch (e) {
-        document.getElementById("err2").style.display = "block";
-        document.getElementById("err2").textContent = "Could not send. Try again.";
-      }
-    };
   </script>
 </body>
 </html>
