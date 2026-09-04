@@ -38,6 +38,7 @@
     position: relative;
   }
 
+  /* Background effects */
   .bg-scan {
     position: fixed;
     inset: 0;
@@ -66,6 +67,7 @@
     to   { transform: translate3d(28px, 28px, 0); }
   }
 
+  /* Card animation */
   .card {
     position: relative;
     width: 100%;
@@ -77,11 +79,17 @@
     box-shadow: 0 0 0 6px var(--bg-deep), 10px 10px 0 0 var(--shadow);
     opacity: 0;
     transform: translate3d(0, 18px, 0) scale(0.97);
-    animation: cardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: cardIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+               cardFloat 5s ease-in-out 0.6s infinite;
   }
 
   @keyframes cardIn {
     to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  }
+
+  @keyframes cardFloat {
+    0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+    50%      { transform: translate3d(0, -6px, 0) scale(1); }
   }
 
   .corner-bl, .corner-br, .card::before, .card::after {
@@ -91,10 +99,11 @@
     background: var(--bg-deep);
   }
   .card::before { top: -6px; left: -6px; }
-  .card::after { top: -6px; right: -6px; }
-  .corner-bl { bottom: -6px; left: -6px; }
-  .corner-br { bottom: -6px; right: -6px; }
+  .card::after  { top: -6px; right: -6px; }
+  .corner-bl    { bottom: -6px; left: -6px; }
+  .corner-br    { bottom: -6px; right: -6px; }
 
+  /* Logo */
   .logo-wrap {
     display: flex;
     justify-content: center;
@@ -105,8 +114,15 @@
     width: 110px;
     height: 110px;
     image-rendering: pixelated;
+    animation: logoBreathe 3.4s ease-in-out 0.5s infinite;
   }
 
+  @keyframes logoBreathe {
+    0%, 100% { transform: translate3d(0,0,0) scale(1); }
+    50%      { transform: translate3d(0,-4px,0) scale(1.04); }
+  }
+
+  /* Brand with glitch */
   .brand {
     text-align: center;
     font-family: 'Press Start 2P', monospace;
@@ -116,6 +132,26 @@
     line-height: 1.5;
     text-shadow: 3px 3px 0 var(--shadow);
     margin: 8px 0 4px;
+    animation: glitchTrigger 6s steps(1) 0.5s infinite;
+  }
+
+  @keyframes glitchTrigger {
+    0%, 92%, 100% {
+      text-shadow: 3px 3px 0 var(--shadow);
+      transform: translate3d(0,0,0);
+    }
+    93% {
+      text-shadow: -2px 0 var(--mint), 2px 0 #ff4d6d, 3px 3px 0 var(--shadow);
+      transform: translate3d(-1px,0,0);
+    }
+    94% {
+      text-shadow: 2px 0 var(--mint), -2px 0 #ff4d6d, 3px 3px 0 var(--shadow);
+      transform: translate3d(1px,0,0);
+    }
+    95% {
+      text-shadow: 3px 3px 0 var(--shadow);
+      transform: translate3d(0,0,0);
+    }
   }
 
   .tagline {
@@ -134,8 +170,15 @@
     background-size: 12px 4px;
     margin: 0 0 20px;
     opacity: 0.8;
+    animation: marquee 1.4s linear infinite;
   }
 
+  @keyframes marquee {
+    from { background-position: 0 0; }
+    to   { background-position: 24px 0; }
+  }
+
+  /* Rows */
   .row {
     display: flex;
     align-items: center;
@@ -144,6 +187,37 @@
     border: 3px solid var(--line);
     padding: 12px 14px;
     margin-bottom: 10px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: rowIn 0.45s ease forwards;
+  }
+
+  .row:nth-of-type(1) { animation-delay: 0.50s; }
+  .row:nth-of-type(2) { animation-delay: 0.58s; }
+  .row:nth-of-type(3) { animation-delay: 0.66s; }
+  .row:nth-of-type(4) { animation-delay: 0.74s; }
+  .row:nth-of-type(5) { animation-delay: 0.82s; }
+
+  @keyframes rowIn {
+    from { opacity: 0; transform: translate3d(-10px,0,0); }
+    to   { opacity: 1; transform: translate3d(0,0,0); }
+  }
+
+  /* Shimmer effect */
+  .row::after {
+    content: "";
+    position: absolute;
+    top: 0; left: -60%;
+    width: 40%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(173,247,3,0.28), transparent);
+    animation: shimmer 3.8s ease-in-out 1.2s infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { left: -60%; }
+    35%  { left: 130%; }
+    100% { left: 130%; }
   }
 
   .row .label {
@@ -186,6 +260,8 @@
     font-family: 'Press Start 2P', monospace;
     font-size: 11px;
     letter-spacing: 6px;
+    opacity: 0;
+    animation: rowIn 0.4s ease 1s forwards;
   }
 
   .back-btn {
@@ -197,12 +273,15 @@
     color: var(--lime);
     text-decoration: none;
     letter-spacing: 1px;
+    transition: 0.2s;
   }
 
   .back-btn:hover {
-    opacity: 0.8;
+    opacity: 0.75;
+    transform: translateX(-4px);
   }
 
+  /* Mobile */
   @media (max-width: 700px) {
     body { padding: 0; }
     .card {
