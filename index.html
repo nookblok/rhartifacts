@@ -28,7 +28,7 @@
       background: rgba(12, 61, 40, 0.92);
       border-bottom: 1px solid var(--line);
     }
-    .bar, .wrap {
+    .bar {
       max-width: 1080px;
       margin: 0 auto;
       padding: 18px 20px;
@@ -82,6 +82,17 @@
       border-radius: 999px;
       padding: 12px 22px;
       font-size: 14px;
+      transition: 0.2s;
+    }
+    .btn:hover {
+      background: var(--lime);
+      color: #0c3d28;
+    }
+    .btn.solid {
+      background: var(--lime);
+      color: #0c3d28;
+      font-weight: 700;
+      border: none;
     }
     .grid {
       max-width: 1080px;
@@ -144,6 +155,13 @@
     <h2>OpenSea</h2>
     <p class="lead">Launching on OpenSea, Robinhood Chain.</p>
     <a class="btn" href="#">Coming Soon on OpenSea</a>
+  </section>
+
+  <!-- Tombol Mint Details -->
+  <section class="center" style="padding: 20px 20px 70px;">
+    <a class="btn solid" href="mint.html">
+      Mint Details
+    </a>
   </section>
 
   <footer>
