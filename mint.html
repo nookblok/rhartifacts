@@ -1,1 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RH Artifacts — Mint Details</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #04441f;
+    --bg-main: #079955;
+    --bg-panel: #05803f;
+    --lime: #adf703;
+    --lime-dim: #7fc900;
+    --mint: #c8e6da;
+    --mint-dim: #9bdbbd;
+    --line: #d9f2e9;
+    --shadow: #032e15;
+  }
 
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg-deep);
+    font-family: 'VT323', monospace;
+    color: var(--mint);
+  }
+
+  body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    position: relative;
+  }
+
+  .bg-scan {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      0deg, rgba(0,0,0,0.14) 0px, rgba(0,0,0,0.14) 2px, transparent 2px, transparent 4px
+    );
+    z-index: 5;
+    mix-blend-mode: multiply;
+  }
+
+  .bg-grid {
+    position: fixed;
+    inset: -50px;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(217,242,233,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(217,242,233,0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+    animation: gridDrift 20s linear infinite;
+    z-index: 0;
+  }
+
+  @keyframes gridDrift {
+    from { transform: translate3d(0,0,0); }
+    to   { transform: translate3d(28px, 28px, 0); }
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    background: var(--bg-main);
+    border: 6px solid var(--line);
+    padding: 28px 24px 24px;
+    z-index: 2;
+    box-shadow: 0 0 0 6px var(--bg-deep), 10px 10px 0 0 var(--shadow);
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.97);
+    animation: cardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes cardIn {
+    to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+  }
+
+  .corner-bl, .corner-br, .card::before, .card::after {
+    content: "";
+    position: absolute;
+    width: 18px; height: 18px;
+    background: var(--bg-deep);
+  }
+  .card::before { top: -6px; left: -6px; }
+  .card::after { top: -6px; right: -6px; }
+  .corner-bl { bottom: -6px; left: -6px; }
+  .corner-br { bottom: -6px; right: -6px; }
+
+  .logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .logo-wrap img {
+    width: 110px;
+    height: 110px;
+    image-rendering: pixelated;
+  }
+
+  .brand {
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 22px;
+    color: var(--lime);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-shadow: 3px 3px 0 var(--shadow);
+    margin: 8px 0 4px;
+  }
+
+  .tagline {
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--mint);
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    opacity: 0.9;
+  }
+
+  .divider {
+    height: 4px;
+    background: linear-gradient(90deg, var(--line) 50%, transparent 50%);
+    background-size: 12px 4px;
+    margin: 0 0 20px;
+    opacity: 0.8;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-panel);
+    border: 3px solid var(--line);
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+
+  .row .label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 9px;
+    color: var(--mint-dim);
+    letter-spacing: 1px;
+  }
+
+  .row .value {
+    font-family: 'VT323', monospace;
+    font-size: 23px;
+    color: var(--lime);
+    text-align: right;
+  }
+
+  .price-block {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .price-block .row {
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 0;
+  }
+
+  .price-block .value {
+    text-align: left;
+    font-size: 22px;
+  }
+
+  .footer-plus {
+    text-align: center;
+    margin-top: 18px;
+    color: var(--line);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 11px;
+    letter-spacing: 6px;
+  }
+
+  .back-btn {
+    display: block;
+    text-align: center;
+    margin-top: 22px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    color: var(--lime);
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+
+  .back-btn:hover {
+    opacity: 0.8;
+  }
+
+  @media (max-width: 700px) {
+    body { padding: 0; }
+    .card {
+      width: 100%;
+      max-width: none;
+      min-height: 100dvh;
+      border-width: 4px;
+      padding: 22px 16px;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .logo-wrap img { width: 95px; height: 95px; }
+    .brand { font-size: 18px; }
+    .row .value { font-size: 20px; }
+    .price-block .value { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-scan"></div>
+
+  <div class="card">
+    <div class="corner-bl"></div>
+    <div class="corner-br"></div>
+
+    <div class="logo-wrap">
+      <img src="./art/logo.png" alt="RH Artifacts" onerror="this.style.display='none'">
+    </div>
+
+    <div class="brand">RH ARTIFACTS</div>
+    <div class="tagline">MINT DETAILS</div>
+
+    <div class="divider"></div>
+
+    <div class="row">
+      <span class="label">SUPPLY</span>
+      <span class="value">5,000</span>
+    </div>
+
+    <div class="row">
+      <span class="label">NETWORK</span>
+      <span class="value">ROBINHOOD CHAIN</span>
+    </div>
+
+    <div class="row">
+      <span class="label">MINT DATE</span>
+      <span class="value">10 SEPT • 3PM UTC</span>
+    </div>
+
+    <div class="price-block">
+      <div class="row">
+        <span class="label">WHITELIST</span>
+        <span class="value">FREE MINT</span>
+      </div>
+      <div class="row">
+        <span class="label">PUBLIC</span>
+        <span class="value">0.0005</span>
+      </div>
+    </div>
+
+    <div class="row">
+      <span class="label">MARKETPLACE</span>
+      <span class="value">OPENSEA</span>
+    </div>
+
+    <div class="footer-plus">+ + + + +</div>
+
+    <a href="index.html" class="back-btn">← BACK TO HOME</a>
+  </div>
+</body>
+</html>
